@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuan9</title>
+    <link rel="stylesheet" href="../css/tuan9.css">
+</head>
+<body>
+    <div class="wrapper">
+        <form>
+            <input type="text" id="txtus" placeholder="User name">
+            <br>
+            <input type="password" id="txtmk" placeholder="Password">
+            <br>
+            <input type="radio" name="gt" value="Nam">Nam
+            <input type="radio" name="gt" value="Nữ" > Nữ
+            <br>
+            <input type="checkbox" value="Trung Nguyen">Trung Nguyen <br>
+            <input type="checkbox" value="MeKong"> MeKong
+            <br>
+            <input type="checkbox" value="New Blue"> New Blue
+            <br>
+            <input type="checkbox" value="Trà sữa"> Trà sữa
+            <br>
+            <input type="button" value="Nhập" onclick="Nhap()"> <br>
+        </form>
+    </div>
+<script>
+    function Nhap(){
+        var tendn, mk;
+        tendn = document.getElementById("txtus").value;
+        mk = document.getElementById("txtmk").value;
+        // checkbox: lưu giá trị vào mảng Array()
+        var cafe = new Array();
+
+        var taphop = document.querySelectorAll("input[type='checkbox']"); //
+        taphop.forEach(function(chk) {
+            if (chk.checked)
+            cafe.push(chk.value); //
+
+        });
+        // radio: lưu 1 giá trị
+        var gtinh;
+
+        var taphopgt = document.querySelectorAll("input[type='radio']"); //
+        taphopgt.forEach(function(ra) {
+            if (ra.checked)
+            gtinh = ra.value; //
+        }); 
+             
+        // alert(tendn);
+        // xử lý tendn, mk: bỏ qua
+        var w = window.open("info.html");
+        // lưu dữ liệu set: ghi vào
+        localStorage.setItem("us", tendn);
+        localStorage.setItem("pd", mk);
+        localStorage.setItem("cf", cafe);
+        localStorage.setItem("gt", gtinh);
+        }
+    </script>
+<script>
+    // lấy dữ liệu đã lưu get: lấy ra info.html
+    var gt1, gt2;
+    gt1 = localStorage.getItem("us");
+    gt2 = localStorage.getItem("pd");
+    gt3 = localStorage.getItem("cf");
+    gt4 = localStorage.getItem("gt");
+
+    //xuất ra html 
+    // document.write("Ten dang nhập: + gt1); 19
+    // document.write("<br>Mật khẩu:" + gt2);
+
+    // xuất vào id đã có
+    document.getElementById("us").innerHTML = gt1;
+    document.getElementById("pw").innerHTML = gt2;
+    document.getElementById("cf").innerHTML = gt3;
+    document.getElementById("gen").innerHTML = gt4;
+</script>
+</body>
+</html>
